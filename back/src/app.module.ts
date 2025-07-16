@@ -5,10 +5,12 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { LocationsModule } from './locations/locations.module';
 import { DatabaseModule } from './shared/database/database.module';
+import { MapController } from './map/map.controller';
+import { MapService } from './map/map.service';
 
 @Module({
   imports: [AuthModule, UsersModule, LocationsModule, DatabaseModule],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, MapController],
+  providers: [AppService, MapService],
 })
-export class AppModule {}
+export class AppModule { }
