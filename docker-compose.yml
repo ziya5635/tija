@@ -1,0 +1,23 @@
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: geo-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  backend:                    # NestJS server
+    build: ./back
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    environment:
+      DB_URI: mongodb://root:example@mongodb:27017/geo-app?authSource=admin
+
+volumes:
+  mongodb_data:
