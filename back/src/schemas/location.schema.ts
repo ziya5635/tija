@@ -28,7 +28,7 @@ export class Location extends Document {
     @Prop()
     address: string;
 
-    @Prop()
+    @Prop({ required: true })
     createdBy: string; // User ID
 }
 
