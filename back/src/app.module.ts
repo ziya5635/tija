@@ -10,7 +10,7 @@ import { MapService } from './map/map.service';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ConfigModule.forRoot(), AuthModule, UsersModule, LocationsModule, DatabaseModule],
+  imports: [ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true }), AuthModule, UsersModule, LocationsModule, DatabaseModule],
   controllers: [AppController, MapController],
   providers: [AppService, MapService],
 })
