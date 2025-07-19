@@ -1,3 +1,5 @@
 import type { ReactNode } from "react";
-
-export type Props<T = undefined> = { children?: ReactNode } & T;
+//T would be only object type
+export type Props<T extends object = object> = {
+    children?: ReactNode;
+} & T;

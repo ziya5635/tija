@@ -15,6 +15,30 @@ export class LocationsService {
         return createdLocation.save();
     }
 
+    async getUserFavorites(userId: string) {
+        return this.locationModel.find({ createdBy: userId }).exec();
+    }
+
+    async addFavorite(locationData: {
+        userId: string;
+        name: string;
+        geometry: { type: string; coordinates: [number, number] };
+        address: string;
+    }) {
+        const location = new this.locationModel({
+            ...locationData,
+            createdBy: locationData.userId
+        });
+        return location.save();
+    }
+
+    async removeFavorite(userId: string, locationId: string) {
+        return this.locationModel.findOneAndDelete({
+            _id: locationId,
+            createdBy: userId
+        }).exec();
+    }
+
     async findNearby(coords: [number, number], radius: number): Promise<Location[]> {
         return this.locationModel.find({
             geometry: {

@@ -10,6 +10,8 @@ export default tseslint.config([
   {
     files: ["**/*.{ts,tsx}"],
     rules: {
+      "no-var": "off",
+      "@typescript-eslint/no-unused-vars": "off",
       "@typescript-eslint/no-require-imports": 0,
       "@typescript-eslint/no-explicit-any": "off",
     },

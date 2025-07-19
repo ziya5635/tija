@@ -69,7 +69,7 @@ function MapComponent({
     <MapContainer
       center={center}
       zoom={zoom}
-      style={{ height: "100%", width: "100%" }}
+      style={{ height: "100vh", width: "100vw" }}
       // Option 1: Using ref callback (recommended)
       ref={handleMapReady}
 
