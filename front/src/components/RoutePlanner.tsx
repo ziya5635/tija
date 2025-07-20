@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button, TextField, Box, Typography } from "@mui/material";
 import LocationSearch from "./LocationSearch";
-import axios from "axios";
+import axios from "../axios";
 import { type Props } from "../types";
 
 interface RoutePlanner {

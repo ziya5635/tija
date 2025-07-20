@@ -7,7 +7,7 @@ import {
   ListItemButton,
   Paper,
 } from "@mui/material";
-import axios from "axios";
+import axios from "../axios";
 import type { Props } from "../types";
 
 interface LocationSearch {

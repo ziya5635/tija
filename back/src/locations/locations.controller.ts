@@ -1,9 +1,9 @@
 import { Controller, Post, Get, Body, UseGuards, Req, Query, Delete, Param } from '@nestjs/common';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth/jwt-auth.guard';
 import { LocationsService } from './locations.service';
 import { CreateLocationDto } from './dto';
 import { NearbyLocationsDto } from './dto';
 import { User } from 'src/users/users.decorator';
+import { JwtAuthGuard } from '../auth/auth.guard';
 
 @Controller('locations')
 @UseGuards(JwtAuthGuard)
@@ -12,8 +12,9 @@ export class LocationsController {
 
     @Get('favorites')
     async getFavorites(@User() user: any) {
-        console.log('innn')
-        return this.locationsService.getUserFavorites(user.userId);
+        console.log("user:", user)
+        var res = await this.locationsService.getUserFavorites(user.userId);
+        return res;
     }
 
     @Post('favorites')

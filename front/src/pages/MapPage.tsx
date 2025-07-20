@@ -30,7 +30,7 @@ function MapPage() {
         >
           <MenuIcon />
         </IconButton>
-        <MapComponent center={[51.505, -0.09]} zoom={13} route={route} />
+        <MapComponent center={[35.68, 51.38]} zoom={13} route={route} />
       </Box>
     </Box>
   );

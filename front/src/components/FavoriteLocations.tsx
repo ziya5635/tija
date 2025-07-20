@@ -11,7 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 import { Star, Delete, Add } from "@mui/icons-material";
-import axios from "axios";
+import axios from "../axios";
 import { useStore } from "../state/hooks/useStore";
 import type { Props } from "../types";
 
@@ -29,6 +29,7 @@ type FavoriteLocationProps = {
 
 function FavoriteLocations({ onSelect }: Props<FavoriteLocationProps>) {
   const { user } = useStore();
+  //solve this favorites issue first
   const [favorites, setFavorites] = useState<FavoriteLocation[]>([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [newFavorite, setNewFavorite] = useState({
@@ -40,16 +41,18 @@ function FavoriteLocations({ onSelect }: Props<FavoriteLocationProps>) {
 
   useEffect(() => {
     if (user) {
-      fetchFavorites();
+      // fetchFavorites();
     }
   }, [user]);
 
   async function fetchFavorites() {
     try {
       const response = await axios.get("/locations/favorites", {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
       });
-      console.log("data:", response.data);
       setFavorites(response.data);
     } catch (error) {
       console.error("Error fetching favorites:", error);
